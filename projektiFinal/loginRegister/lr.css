@@ -1,0 +1,131 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-image: url(test1.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+font-family: 'Montserrat', sans-serif;
+letter-spacing: 0.5px;
+}
+
+#mainForm input {
+
+
+}
+
+
+
+.container {
+    margin-top: 15%;
+
+    width: 40%;
+    left: 30%;
+    min-height: 270px;
+    height: auto;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: transparent;
+
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+.link-container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+}
+
+.link-container a {
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+    transition: all 0.2s ease;
+    border-bottom: 0.1px solid white;
+}
+
+.link-container a:first-child {
+    border-right: 1px solid white;
+}
+
+.link-container>a:hover {
+    opacity: 0.7;
+    background-color: rgba(25, 68, 66, 0.9);
+    transition: all 0.2s ease;
+
+}
+
+.form-style {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.form-style label {
+    margin-top: 20px;
+
+    font-size: 18px;
+    color: white;
+
+}
+
+
+
+.UnPw {
+
+  text-align: left;
+  margin-left: 103px;
+}
+
+.registerLbl {
+  text-align: left;
+  margin-left: 103px;
+}
+
+.form-style .input {
+    margin-top: 10px;
+    width: 60%;
+    position: relative;
+    left: 20%;
+    color: white;
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 0.5px solid white;
+
+}
+
+.forms {
+    height: auto;
+}
+
+#submit {
+    margin-top: 50px;
+    width: 25%;
+    left: 40%;
+    font-size: 17px;
+    color: white;
+    height: 35px;
+    cursor: pointer;
+    border: 0;
+    background-color: rgba(25, 68, 66, 0.8);
+
+
+}

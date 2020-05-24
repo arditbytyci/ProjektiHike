@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="loginRegister/lr.css">
+    <script type="text/javascript" src="lrJs/lr.js">
+
+    </script>
+    <title></title>
+  </head>
+  <body>
+
+<div class="wholething">
+
+
+    <div class="container">
+      <div class="link-container">
+        <a id="firstA" href="#" onclick="changeForm(0)">Login</a>
+        <a href="#" onclick="changeForm(1)">Register</a>
+      </div>
+      <form id="mainForm" action="">
+        <div class="login forms form-style">
+          <label for="" class="UnPw">Email</label>
+          <input id="email" type="email" class="input" placeholder="Email" id="try" required/>
+          <label for="" class="UnPw">Password</label>
+          <input id="password" type="password" class="input" placeholder="Password" />
+          <button
+            id="submit"
+            type="submit"
+            class="input submit"
+            onclick="validateLogin()"
+          >Login</button>
+        </div>
+        <div class="register forms hidden">
+
+          <label for="" class="registerLbl">Email</label>
+          <input id="email2" type="email" class="input" placeholder="Email" required/>
+          <label for="" class="registerLbl">Password</label>
+          <input id="password2" type="password" class="input" placeholder="Password" />
+          <label for="" class="registerLbl">Confirm password</label>
+          <input id="confirmPw" type="password" class="input" placeholder="Confirm Password" />
+          <button
+            id="submit"
+            type="submit"
+            class="input submit"
+            value="Login"
+            onclick="validateRegister()"
+          >Register</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+  </body>
+</html>

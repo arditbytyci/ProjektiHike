@@ -3,9 +3,9 @@ function validate(){
   var email = document.getElementById("email").value;
   var message = document.getElementById("message").value;
   var error_message = document.getElementById("error_message");
-  
+
   error_message.style.padding = "10px";
-  
+
   var text;
   if(name.length < 5){
     text = "Please Enter Name";

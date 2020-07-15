@@ -13,9 +13,9 @@ require('db.php');
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
-<title>Dashboard</title>
-	<link rel="stylesheet" href="css/dashboard.css">
 
+	<link rel="stylesheet" href="css/dashboard.css">
+	<title>Dashboard</title>
 
 	<script src="js/dashboard.js"></script>
 
@@ -71,41 +71,65 @@ require('db.php');
 				<li>
 					<a href="home.php">
 
-						<span>Front-End</span>
+						<span>Front End</span>
 					</a>
 				</li>
 			</ul>
 		</nav>
 	</div>
 	<div class="main-content">
-		<div class="title">
+	<div class="title">Messages</div>
+			<div class="chart">
+				<table border=5>
+					<tr>
 
-        <h2 style="text-align:center">EVENT</h2>
-<?php
-include 'model.php';
-$model= new Model();
-$id=$_REQUEST['id'];
-$row= $model ->fetch_event($id);
-if(!empty($row)){
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+                        <th>Mesaage</th>
+
+					</tr>
+					<?php
+				include 'model.php';
+				$model= new Model();
+				$rows= $model->fetchinbox();
+
+				if(!empty($rows)){
+                    foreach($rows as $row){
+                        ?>
+                        <tr>
+							<td><?php echo $row['id']; ?></td>
+
+                            <td><?php echo $row['name']; ?></>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['message']; ?></td>
+
+                            <td>
+                            <a href = "mailto:<?php echo $row['email']; ?>?subject = Feedback&body = Message">
+Reply
+</a>
 
 
-?>
-<div class="card">
-<img src="<?php echo $row['image']; ?>" style="width:50%">
-  <h1><?php echo $row['id']; ?></td>. <?php echo $row['location']; ?></h1>
+                            </td>
 
 
-        <p>DATE: <?php echo $row['date']; ?></p>
-          <p>NUMBER OF STOPS: <?php echo $row['stops']; ?></p>
-         <p>NUMBER OF PEOPLE: <?php echo $row['people']; ?></p>
-   <p>PRICE: <?php echo $row['price']; ?></p>
-  <p><button>Add to Cart</button></p>
-</div>
-<?php }else{echo "NO EVENT";}
-?>
-        </div>
 
-	</div>
+
+
+                        </tr>
+                        <?php
+                    }
+
+                }else{
+                    echo "IT IS NOT REGISTRED ANY EVENT...";
+                }
+
+			?>
+				</table>
+			</div>
+		</div>
+
+
 
 
 </body>

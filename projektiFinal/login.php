@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8"/>
     <title>Login</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
 </head>
 <body>
 <?php
     require('db.php');
     session_start();
-    // When form submitted, check and create user session.
+
     if (isset($_POST['username'])) {
-        $username = stripslashes($_REQUEST['username']);    // removes backslashes
+        $username = stripslashes($_REQUEST['username']);
         $username = mysqli_real_escape_string($con, $username);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($con, $password);
         $usertype;
-        // Check user is exist in the database
+      
         $query    = "SELECT * FROM `user` WHERE username='$username'
                      AND password='" . md5($password) . "'";
-        $result = mysqli_query($con, $query) or die(mysql_error());
+        $result = mysqli_query($con, $query);
         $count = mysqli_num_rows($result);
         if ($count > 0) {
             $row=mysqli_fetch_assoc($result);
@@ -27,11 +27,11 @@
             $_SESSION['IS_LOGIN']='yes';
             $_SESSION['username'] = $username;
           if($row["usertype"]=="admin"){
-            header("Location: dashboard.php"); 
+            header("Location: dashboard.php");
           } if($row["usertype"]=="user"){
-            header("Location: home.html");
+            header("Location: home.php");
           }
-           
+
         } else {
             echo "<div class='form'>
                   <h3>Incorrect Username/password.</h3><br/>

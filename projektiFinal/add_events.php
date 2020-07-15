@@ -13,7 +13,7 @@ require('db.php');
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
-
+	<title>Dashboard</title>
 	<link rel="stylesheet" href="css/dashboard.css">
 
 
@@ -30,41 +30,48 @@ require('db.php');
 <body>
 	<div class="header">
 		<div class="logo">
-			<i class="fa fa-tachometer"></i>
+
 			<span>Brand</span>
 		</div>
 		<a href="#" class="nav-trigger"><span></span></a>
 	</div>
 	<div class="side-nav">
 		<div class="logo">
-			<i class="fa fa-tachometer"></i>
+
 			<span> <?php echo $_SESSION['username']; ?></span>
 		</div>
 		<nav>
 			<ul>
 				<li>
-					<a href="#">
-						<span><i class="fa fa-user"></i></span>
+					<a href="add_events.php">
+
 						<span>Event</span>
+					</a>
+				</li>
+				<li>
+					<a href="add_products.php">
+
+
+						<span>Products</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
 
-						<span><i class="fa fa-envelope"></i></span>
-						<span>Products</span>
-					</a>
-				</li>
-				<li class="active">
-					<a href="#">
-						<span><i class="fa fa-bar-chart"></i></span>
 						<span>Users</span>
 					</a>
 				</li>
+				<li >
+					<a href="inbox.php">
+						<span>Inbox</span>
+					</a>
+				</li>
+
+
 				<li>
-					<a href="#">
-						<span><i class="fa fa-credit-card-alt"></i></span>
-						<span>Payments</span>
+					<a href="home.php">
+
+						<span>Front End</span>
 					</a>
 				</li>
 			</ul>
@@ -72,10 +79,10 @@ require('db.php');
 	</div>
 	<div class="main-content">
 		<div class="title">
-			<?php 
+			<?php
 				include 'model.php';
 				$model= new Model();
-				$insert= $model->insert(); 
+				$insert= $model->insert();
 
 			?>
 			<form method="post" enctype="multipart/form-data">
@@ -107,7 +114,7 @@ require('db.php');
 				</div>
 				<div class="item">
 					<label for="file"> Image <span>*</span></label>
-					<input type="file" id="avatar" name="file" accept="image/png, image/jpeg">
+					<input type="file" id="avatar" name="event_image" accept="image/png, image/jpeg">
 
 				</div>
 				<div class="item">
@@ -120,7 +127,7 @@ require('db.php');
 		</div>
 
 
-	
+
 
 
 

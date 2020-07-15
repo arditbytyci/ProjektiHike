@@ -27,11 +27,11 @@ public function insert(){
                         $stops = $_POST['stops'];
                         $people = $_POST['people'];
                         $price = $_POST['price'];
-						$files = $_FILES['file'];
+						$files = $_FILES['event_image'];
 
 					
 						$filename = $files['name'];
-						$fileerror = $files['error'];
+					
 						$filetmp = $files['tmp_name'];
 
 						$fileext = explode('.', $filename);
@@ -40,7 +40,7 @@ public function insert(){
 						$fileextstored = array('png', 'jpg', 'jpeg');
 
 						if (in_array($filecheck, $fileextstored)) {
-							$destionationfile = 'imgevents/' . $filename;
+							$destionationfile = 'upload/' . $filename;
 							move_uploaded_file($filetmp, $destionationfile);
 
 							$query = "INSERT INTO `events`( `image`, `location`, `date`, `stops`, `people`, `price`) VALUES ('$destionationfile','$location','$date','$stops','$people','$price')";
@@ -55,6 +55,42 @@ public function insert(){
 					}
 		
 }
+
+public function insertproduct(){
+				
+				
+    if (isset($_POST['submit'])) {
+
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $files = $_FILES['image'];
+
+    
+        $filename = $files['name'];
+    
+        $filetmp = $files['tmp_name'];
+
+        $fileext = explode('.', $filename);
+        $filecheck = strtolower(end($fileext));
+
+        $fileextstored = array('png', 'jpg', 'jpeg');
+
+        if (in_array($filecheck, $fileextstored)) {
+            $destionationfile = 'upload/' . $filename;
+            move_uploaded_file($filetmp, $destionationfile);
+
+            $query = "INSERT INTO `products`( `image`, `name`,  `price`) VALUES ('$destionationfile','$name','$price')";
+            if($sql = $this->conn -> query($query)){
+                echo "Successfully";
+            }else{
+                echo "Falied";
+            }
+        } else {
+            echo "Extension is not matching ";
+        }
+    }
+
+}
 public function fetchevents(){
     $data=null;
     $query="Select * from events";
@@ -66,9 +102,69 @@ public function fetchevents(){
     return $data;
 }
 
+public function fetchp(){
+    $data=null;
+    $query="Select * from products";
+    if($sql=$this->conn->query($query)){
+        while($row=mysqli_fetch_assoc($sql)){
+            $data[]=$row;
+        }
+    }
+    return $data;
+}
+public function fetchinbox(){
+    $data=null;
+    $query="Select * from inbox";
+    if($sql=$this->conn->query($query)){
+        while($row=mysqli_fetch_assoc($sql)){
+            $data[]=$row;
+        }
+    }
+    return $data;
+}
+public function fetchproducts(){
+    $data=null;
+    $query="SELECT 
+    *
+FROM
+    products
+ORDER BY id ASC
+LIMIT 3;";
+    if($sql=$this->conn->query($query)){
+        while($row=mysqli_fetch_assoc($sql)){
+            $data[]=$row;
+        }
+    }
+    return $data;
+}
+public function fetche(){
+    $data=null;
+    $query="SELECT 
+    *
+FROM
+    events
+ORDER BY id ASC
+LIMIT 3;";
+    if($sql=$this->conn->query($query)){
+        while($row=mysqli_fetch_assoc($sql)){
+            $data[]=$row;
+        }
+    }
+    return $data;
+}
 public function delete($id){
 
     $query="delete from events where id='$id'";
+    if($sql= $this->conn->query($query)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+public function deleteproduct($id){
+
+    $query="delete from products where id='$id'";
     if($sql= $this->conn->query($query)){
         return true;
     }else{
@@ -99,17 +195,45 @@ public function fetch_event($id){
         return $data;
 
     }
-    public function update($data){
-       echo $query="Update events set location='$data[location]', date='$data[date]', 
-        stops='$data[stops]', people='$data[people]', price='$data[price]'";
+    public function update($id){
+        if (isset($_POST['update'])) {
 
-       if($sql =$this->conn->query($query)){
-           return true;
-       }else{
-           return false;
-         }
-       }
+            $location = $_POST['location'];
+            $date = $_POST['date'];
+            $stops = $_POST['stops'];
+            $people = $_POST['people'];
+            $price = $_POST['price'];
+            $files = $_FILES['image'];
+
+        
+            $filename = $files['name'];
+        
+            $filetmp = $files['tmp_name'];
+
+            $fileext = explode('.', $filename);
+            $filecheck = strtolower(end($fileext));
+
+            $fileextstored = array('png', 'jpg', 'jpeg');
+
+            if (in_array($filecheck, $fileextstored)) {
+                $destionationfile = 'upload/' . $filename;
+                move_uploaded_file($filetmp, $destionationfile);
+
+               
+                $query = "UPDATE events  set image='$destionationfile',location='$location', date='$date', stops='$stops', people='$people', price='$price' where id='$id' ";
+                if($sql =$this->conn->query($query)){
+                    echo "Successfully";
+                }else{
+                    echo "Falied";
+                }
+            } else {
+                echo "Extension is not matching ";
+            }
+        }
+
     }
+         
+}
 
 
 ?>

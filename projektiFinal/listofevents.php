@@ -15,7 +15,7 @@ require('db.php');
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="css/dashboard.css">
-
+<title>Dashboard</title>
 
 	<script src="js/dashboard.js"></script>
 
@@ -37,34 +37,41 @@ require('db.php');
 	</div>
 	<div class="side-nav">
 		<div class="logo">
-			<i class="fa fa-tachometer"></i>
+
 			<span> <?php echo $_SESSION['username']; ?></span>
 		</div>
 		<nav>
 			<ul>
 				<li>
-					<a href="#">
-						<span><i class="fa fa-user"></i></span>
+					<a href="add_events.php">
+
 						<span>Event</span>
+					</a>
+				</li>
+				<li>
+					<a href="add_products.php">
+
+
+						<span>Products</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
 
-						<span><i class="fa fa-envelope"></i></span>
-						<span>Products</span>
-					</a>
-				</li>
-				<li class="active">
-					<a href="#">
-						<span><i class="fa fa-bar-chart"></i></span>
 						<span>Users</span>
 					</a>
 				</li>
+				<li >
+					<a href="inbox.php">
+						<span>Inbox</span>
+					</a>
+				</li>
+
+
 				<li>
-					<a href="#">
-						<span><i class="fa fa-credit-card-alt"></i></span>
-						<span>Payments</span>
+					<a href="home.php">
+
+						<span>Front-End</span>
 					</a>
 				</li>
 			</ul>
@@ -75,7 +82,7 @@ require('db.php');
 			<div class="chart">
 				<table border=5>
 					<tr>
-						
+
 						<th>ID</th>
 						<th>Image</th>
 						<th>Location</th>
@@ -85,10 +92,10 @@ require('db.php');
                         <th>Price</th>
 						<th>Action</th>
 					</tr>
-					<?php 
+					<?php
 				include 'model.php';
 				$model= new Model();
-				$rows= $model->fetchevents(); 
+				$rows= $model->fetchevents();
 
 				if(!empty($rows)){
                     foreach($rows as $row){
@@ -115,7 +122,7 @@ require('db.php');
                         </tr>
                         <?php
                     }
-                 
+
                 }else{
                     echo "IT IS NOT REGISTRED ANY EVENT...";
                 }
